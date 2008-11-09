@@ -11,7 +11,8 @@ plutimikation_SOURCES = main.cpp plutimikation.cpp prefs.kcfgc \
                         configdialog.cpp resultview.cpp krandom.cpp \
                         question.cpp \
                         questionset.cpp questionsetmultiplication.cpp \
-                        questionsetquadrats.cpp questionsetcube.cpp
+                        questionsetquadrats.cpp questionsetcube.cpp \
+                        mainview.cpp
 
 xdg_apps_DATA = plutimikation.desktop
 kde_kcfg_DATA = plutimikation.kcfg

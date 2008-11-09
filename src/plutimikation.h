@@ -24,24 +24,12 @@
 #ifndef PLUTIMIKATION_H
 #define PLUTIMIKATION_H
 
-#include "question.h"
-#include "questionset.h"
-
 #include <kmainwindow.h>
 
-#include <qvaluelist.h>
-#include <qtimer.h>
-
-class ResultView;
+class MainView;
 
 class KAction;
 class KToggleAction;
-
-class QWidgetStack;
-class QLabel;
-class QLineEdit;
-class QPushButton;
-
 
 /**
   Main window for Plutimikation.
@@ -56,43 +44,19 @@ class Plutimikation : public KMainWindow
     void readSettings();
     void writeSettings();
 
-    void newQuestion();
-
   protected:
-    void initQuestionSets();
-    void initQuestions();
     void initActions();
 
     void showStatus( const QString & );
 
   protected slots:
-    void newGame();
-    
-    void checkAnswer();
-
     void configureKeyBindings();
-
     void showOptions();
 
-    void guteNacht();
-
-    void setReady();
-
-  private:
-    QLabel *mQuestionLabel;
-    QLineEdit *mAnswerEdit;
-    QLabel *mFeedbackText;
-    QPushButton *mOkButton;
-
-    ResultView *mResultView;
+    void newGame();
     
-    Question::List mQuestions;
-
-    Question::List::Iterator mCurrentQuestion;
-
-    QTimer mReadyTimer;
-
-    QuestionSet::List mQuestionSets;
+  private:
+    MainView *m_mainView;
 };
 
 #endif

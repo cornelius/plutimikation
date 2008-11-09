@@ -26,11 +26,7 @@
 
 #include "configdialog.h"
 #include "prefs.h"
-#include "resultview.h"
-#include "krandom.h"
-#include "questionsetmultiplication.h"
-#include "questionsetquadrats.h"
-#include "questionsetcube.h"
+#include "mainview.h"
 
 #include <klocale.h>
 #include <kkeydialog.h>
@@ -49,72 +45,20 @@
 
 Plutimikation::Plutimikation()
 {
-  QWidget *topWidget = new QWidget( this );
-  setCentralWidget( topWidget );
-
-  QGridLayout *topLayout = new QGridLayout( topWidget );
-  topLayout->setSpacing( 8 );
-  topLayout->setMargin( 8 );
-
-  QLabel *label = new QLabel( i18n("Question:"), topWidget );
-  topLayout->addWidget( label, 0, 0 );
-
-  mQuestionLabel = new QLabel( topWidget );
-  QFont f = mQuestionLabel->font();
-  f.setPointSize( 30 );
-  mQuestionLabel->setFont( f );
-  mQuestionLabel->setAlignment( AlignCenter );
-  topLayout->addWidget( mQuestionLabel, 1, 0 );
-  
-  label = new QLabel( i18n("Answer:"), topWidget );
-  topLayout->addWidget( label, 2, 0 );
-  
-  mAnswerEdit = new QLineEdit( topWidget );
-  topLayout->addWidget( mAnswerEdit, 3, 0 );
-  connect( mAnswerEdit, SIGNAL( returnPressed() ), SLOT( checkAnswer() ) );
-  mAnswerEdit->setAlignment( AlignCenter );
-
-  mOkButton = new QPushButton( i18n("Ok"), topWidget );
-  topLayout->addWidget( mOkButton, 4, 0 );
-  connect( mOkButton, SIGNAL( clicked() ), SLOT( checkAnswer() ) );
-
-  mFeedbackText = new QLabel( topWidget );
-  topLayout->addWidget( mFeedbackText, 5, 0 );
-  mFeedbackText->setFrameStyle( QFrame::Panel | QFrame::Plain );
-  mFeedbackText->setLineWidth( 2 );
-  mFeedbackText->setAlignment( AlignCenter );
-
-  QFontMetrics fm( mFeedbackText->font() );
-  mFeedbackText->setFixedHeight( fm.height() * 3 + 6 );
-
-  mResultView = new ResultView( topWidget );
-  topLayout->addMultiCellWidget( mResultView, 0, 5, 1, 1 );
-
-  connect( &mReadyTimer, SIGNAL( timeout() ), SLOT( setReady() ) );
+  m_mainView = new MainView( this );
+  setCentralWidget( m_mainView );
 
   initActions();
 
   setAutoSaveSettings();
 
   readSettings();
-
-  initQuestionSets();
-
-  initQuestions();
-
-  newQuestion();
 }
 
 Plutimikation::~Plutimikation()
 {
   writeSettings();
   Prefs::writeConfig();
-
-  QuestionSet::List::ConstIterator it;
-  for( it = mQuestionSets.begin(); it != mQuestionSets.end(); ++it ) {
-    delete *it;
-  }
-  mQuestionSets.clear();
 }
 
 void Plutimikation::readSettings()
@@ -137,38 +81,6 @@ void Plutimikation::writeSettings()
 #endif
 }
 
-void Plutimikation::initQuestionSets()
-{
-  mQuestionSets.append( new QuestionSetMultiplication() );
-  mQuestionSets.append( new QuestionSetQuadrats() );
-  mQuestionSets.append( new QuestionSetCube() );
-}
-
-void Plutimikation::initQuestions()
-{
-  mQuestions.clear();
-
-  QuestionSet::List::ConstIterator it;
-  for( it = mQuestionSets.begin(); it != mQuestionSets.end(); ++it ) {
-    QuestionSet *set = *it;
-    set->initQuestions( mQuestions );
-  }
-
-  mResultView->setTotalCount( mQuestions.count() );
-  mResultView->setCurrentCount( 0 );
-  mResultView->setWrongCount( 0 );
-
-  setReady();
-
-  mOkButton->setEnabled( true );
-  mAnswerEdit->setEnabled( true );
-}
-
-void Plutimikation::setReady()
-{
-  mFeedbackText->setText( i18n("Ready") );
-}
-
 void Plutimikation::initActions()
 {
   KStdAction::openNew( this, SLOT( newGame() ), actionCollection() );
@@ -186,67 +98,6 @@ void Plutimikation::initActions()
 
   // finally create toolbar and menubar
   createGUI();
-}
-
-void Plutimikation::newGame()
-{
-  kdDebug() << "NEW GAME" << endl;
-  initQuestions();
-  newQuestion();
-}
-
-void Plutimikation::newQuestion()
-{
-  int i = KRandom::number( mQuestions.count() );
-  kdDebug() << "Question number " << i << endl;
-  
-  mCurrentQuestion = mQuestions.at( i );
-  
-  mQuestionLabel->setText( (*mCurrentQuestion).question() );
-
-  mAnswerEdit->setText( "" );
-
-  mReadyTimer.start( 1000, true ); // 1 second
-}
-
-void Plutimikation::checkAnswer()
-{
-  if ( mQuestions.count() == 0 ) {
-    kdError() << "checkAnswer(): no questions." << endl;
-    return;
-  }
-
-  mReadyTimer.stop();
-
-  Question q = *mCurrentQuestion;
-
-  QString text = "<qt>";
-  if ( mAnswerEdit->text() == q.answer() ) {
-    text += i18n("Correct answer:");
-    mResultView->incrementCurrentCount();
-    mQuestions.remove( mCurrentQuestion );
-  } else {
-    text += "<font color=\"red\">" + i18n("Wrong answer.") + "</font><br>";
-    text += i18n("Correct Answer:");
-    mResultView->incrementWrongCount();
-  }
-  text += "<br>";
-  text += q.question() + " = " + q.answer();
-  text += "</qt>";
-
-  mFeedbackText->setText( text );
-  
-  if ( mQuestions.count() == 0 ) {
-    KMessageBox::information( this, i18n("<qt><b>Congratulation!</b><br>"
-                                         "You answered all questions.</qt>") );
-    mQuestionLabel->setText( "" );
-    mAnswerEdit->setText( "" );
-    mAnswerEdit->setEnabled( false );
-    mOkButton->setEnabled( false );
-    mFeedbackText->setText( i18n("You won.") );
-  } else {
-    newQuestion();
-  }
 }
 
 void Plutimikation::configureKeyBindings()
@@ -272,9 +123,11 @@ void Plutimikation::showStatus( const QString &msg )
   statusBar()->message( msg );
 }
 
-void Plutimikation::guteNacht()
+void Plutimikation::newGame()
 {
-  mQuestionLabel->setText( "Gute Nacht, Antonia!" );
+  kdDebug() << "NEW GAME" << endl;
+  m_mainView->initQuestions();
+  m_mainView->newQuestion();
 }
 
 #include "plutimikation.moc"
