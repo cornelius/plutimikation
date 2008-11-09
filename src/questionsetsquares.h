@@ -18,21 +18,19 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301,
     USA.
 */
+#ifndef QUESTIONSETSQUARES_H
+#define QUESTIONSETSQUARES_H
 
-#include "questionsetcube.h"
+#include "questionset.h"
 
-#include "prefs.h"
+#include "question.h"
 
-QuestionSetCube::QuestionSetCube()
+class QuestionSetSquares : public QuestionSet
 {
-}
+  public:
+    QuestionSetSquares();
 
-void QuestionSetCube::initQuestions( Question::List &questions )
-{
-  for( int b = 1; b <= 10; ++b ) {
-    Question q;
-    q.setQuestion( QString::number( b ) + " ^ 3" );
-    q.setAnswer( QString::number( b * b * b ) );
-    questions.append( q );
-  }
-}
+    void initQuestions( Question::List &questions );
+};
+
+#endif

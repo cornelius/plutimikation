@@ -22,8 +22,8 @@
 #include "newgameview.h"
 
 #include "questionsetmultiplication.h"
-#include "questionsetquadrats.h"
-#include "questionsetcube.h"
+#include "questionsetsquares.h"
+#include "questionsetcubics.h"
 
 #include <klocale.h>
 
@@ -66,10 +66,10 @@ QuestionSet::List NewGameView::questionSets() const
     questionSets.append( new QuestionSetMultiplication() );
   }
   if ( m_squareNumbersCheck->isChecked() ) {
-    questionSets.append( new QuestionSetQuadrats() );
+    questionSets.append( new QuestionSetSquares() );
   }
   if ( m_cubicNumbersCheck->isChecked() ) {
-    questionSets.append( new QuestionSetCube() );
+    questionSets.append( new QuestionSetCubics() );
   }
 
   return questionSets;

@@ -11,7 +11,7 @@ plutimikation_SOURCES = main.cpp plutimikation.cpp prefs.kcfgc \
                         configdialog.cpp resultview.cpp krandom.cpp \
                         question.cpp \
                         questionset.cpp questionsetmultiplication.cpp \
-                        questionsetquadrats.cpp questionsetcube.cpp \
+                        questionsetsquares.cpp questionsetcubics.cpp \
                         mainview.cpp newgameview.cpp
 
 xdg_apps_DATA = plutimikation.desktop
