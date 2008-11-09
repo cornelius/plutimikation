@@ -26,7 +26,6 @@
 
 #include "configdialog.h"
 #include "prefs.h"
-#include "mainview.h"
 
 #include <klocale.h>
 #include <kkeydialog.h>
@@ -39,14 +38,24 @@
 #include <kstatusbar.h>
 #include <kdebug.h>
 
+#include <qwidgetstack.h>
 #include <qlayout.h>
 #include <qlineedit.h>
 #include <qpushbutton.h>
 
 Plutimikation::Plutimikation()
 {
+  m_viewStack = new QWidgetStack( this );
+  setCentralWidget( m_viewStack );
+
+  m_newGameView = new NewGameView( this );
+  m_viewStack->addWidget( m_newGameView );
+  connect( m_newGameView, SIGNAL( startClicked() ), SLOT( newGame() ) );
+
   m_mainView = new MainView( this );
-  setCentralWidget( m_mainView );
+  m_viewStack->addWidget( m_mainView );
+
+  m_viewStack->raiseWidget( m_newGameView );
 
   initActions();
 
@@ -126,6 +135,9 @@ void Plutimikation::showStatus( const QString &msg )
 void Plutimikation::newGame()
 {
   kdDebug() << "NEW GAME" << endl;
+
+  m_viewStack->raiseWidget( m_mainView );
+
   m_mainView->initQuestions();
   m_mainView->newQuestion();
 }

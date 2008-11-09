@@ -26,7 +26,8 @@
 
 #include <kmainwindow.h>
 
-class MainView;
+#include "mainview.h"
+#include "newgameview.h"
 
 class KAction;
 class KToggleAction;
@@ -56,8 +57,10 @@ class Plutimikation : public KMainWindow
     void newGame();
     
   private:
+    QWidgetStack *m_viewStack;
+
+    NewGameView *m_newGameView;
     MainView *m_mainView;
 };
 
 #endif
-
