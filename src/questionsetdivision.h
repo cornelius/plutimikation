@@ -1,7 +1,7 @@
 /*
-    This file is part of KDE.
+    This file is part of Plutimikation.
 
-    Copyright (c) 2008 Cornelius Schumacher <schumacher@kde.org>
+    Copyright (c) 2007 Cornelius Schumacher <schumacher@kde.org>
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -18,30 +18,19 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301,
     USA.
 */
-#ifndef NEWGAMEVIEW_H
-#define NEWGAMEVIEW_H
+#ifndef QUESTIONSETDIVISION_H
+#define QUESTIONSETDIVISION_H
 
 #include "questionset.h"
 
-#include <qwidget.h>
-#include <qcheckbox.h>
+#include "question.h"
 
-class NewGameView : public QWidget
+class QuestionSetDivision : public QuestionSet
 {
-    Q_OBJECT
   public:
-    NewGameView( QWidget *parent = 0 );
+    QuestionSetDivision();
 
-    QuestionSet::List questionSets() const;
-
-  signals:
-    void startClicked();
-
-  private:
-    QCheckBox *m_timesTableCheck;
-    QCheckBox *m_divisionCheck;
-    QCheckBox *m_squareNumbersCheck;
-    QCheckBox *m_cubicNumbersCheck;
+    void initQuestions( Question::List &questions );
 };
 
 #endif

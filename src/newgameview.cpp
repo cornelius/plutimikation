@@ -24,6 +24,7 @@
 #include "questionsetmultiplication.h"
 #include "questionsetsquares.h"
 #include "questionsetcubics.h"
+#include "questionsetdivision.h"
 
 #include <klocale.h>
 
@@ -42,6 +43,9 @@ NewGameView::NewGameView( QWidget *parent )
   m_timesTableCheck = new QCheckBox( i18n("Times Table"), this );
   topLayout->addWidget( m_timesTableCheck );
   m_timesTableCheck->setChecked( true );
+  
+  m_divisionCheck = new QCheckBox( i18n("Division"), this );
+  topLayout->addWidget( m_divisionCheck );
   
   m_squareNumbersCheck = new QCheckBox( i18n("Square Numbers"), this );
   topLayout->addWidget( m_squareNumbersCheck );
@@ -64,6 +68,9 @@ QuestionSet::List NewGameView::questionSets() const
 
   if ( m_timesTableCheck->isChecked() ) {
     questionSets.append( new QuestionSetMultiplication() );
+  }
+  if ( m_divisionCheck->isChecked() ) {
+    questionSets.append( new QuestionSetDivision() );
   }
   if ( m_squareNumbersCheck->isChecked() ) {
     questionSets.append( new QuestionSetSquares() );

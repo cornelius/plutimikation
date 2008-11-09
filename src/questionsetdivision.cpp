@@ -1,7 +1,7 @@
 /*
-    This file is part of KDE.
+    This file is part of Plutimikation.
 
-    Copyright (c) 2008 Cornelius Schumacher <schumacher@kde.org>
+    Copyright (c) 2007 Cornelius Schumacher <schumacher@kde.org>
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -18,30 +18,26 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301,
     USA.
 */
-#ifndef NEWGAMEVIEW_H
-#define NEWGAMEVIEW_H
 
-#include "questionset.h"
+#include "questionsetdivision.h"
 
-#include <qwidget.h>
-#include <qcheckbox.h>
+#include "prefs.h"
 
-class NewGameView : public QWidget
+QuestionSetDivision::QuestionSetDivision()
 {
-    Q_OBJECT
-  public:
-    NewGameView( QWidget *parent = 0 );
+}
 
-    QuestionSet::List questionSets() const;
-
-  signals:
-    void startClicked();
-
-  private:
-    QCheckBox *m_timesTableCheck;
-    QCheckBox *m_divisionCheck;
-    QCheckBox *m_squareNumbersCheck;
-    QCheckBox *m_cubicNumbersCheck;
-};
-
-#endif
+void QuestionSetDivision::initQuestions( Question::List &questions )
+{
+  QValueList<int> rows = Prefs::rows();
+  QValueList<int>::ConstIterator it;
+  for( it = rows.begin(); it != rows.end(); ++it ) {
+    int a = *it;
+    for( int b = 1; b <= 10; ++b ) {
+      Question q;
+      q.setQuestion( QString::number( a * b ) + " : " + QString::number( a ) );
+      q.setAnswer( QString::number( b ) );
+      questions.append( q );
+    }
+  }
+}
