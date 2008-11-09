@@ -4,3 +4,5 @@ configure.in
 subdirs
 aclocal.m4
 acinclude.m4
+autom4te.cache
+config.h.in
