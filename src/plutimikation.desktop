@@ -1,0 +1,12 @@
+# KDE Config File  
+[Desktop Entry]
+Encoding=UTF-8
+Type=Application
+Exec=plutimikation -caption "%c" %i %m  
+Icon=plutimikation.png
+DocPath=plutimikation/index.html
+Comment=
+Comment[de]=
+Terminal=0
+Name=Plutimikation
+Name[de]=Plutimikation

@@ -1,0 +1,28 @@
+This is Plutimikation, a math learning game for children.
+
+
+Some hints how to handle translations
+-------------------------------------
+
+Creating translation template:
+
+ make -f admin/Makefile.common package-messages
+
+Merging messages:
+ 
+ cd po
+ PACKAGE=plutimikation POFILES=de.po make -f ../admin/Makefile.common \
+     package-merge
+
+Testing translations:
+
+  LANG=de_DE plutimikation
+
+
+Creating distribution tarball
+-----------------------------
+
+- Check out fresh copy from svn
+- make -f admin/Makefile.common dist
+- Rename directory to contain version in name
+- Tar directory

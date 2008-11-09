@@ -1,0 +1,31 @@
+<!DOCTYPE kpartgui>
+<kpartgui name="kaput" version="1">
+
+<MenuBar>
+  <Menu name="game"><text>&amp;Game</text>
+    <Action name="game_stop"/>
+  </Menu>
+  <Menu name="view"><text>&amp;View</text>
+    <Action name="view_text"/>
+    <Action name="view_graph"/>
+    <Separator/>
+    <Action name="view_reset"/>
+  </Menu>
+  <Menu name="settings"><text>&amp;Settings</text>
+    <Action name="settings_autoroll"/>
+  </Menu>
+</MenuBar>
+
+<ToolBar name="mainToolBar" noMerge="1"><text>Main Toolbar</text>
+    <Action name="game_new"/>
+    <Action name="game_open"/>
+    <Action name="game_save"/>
+    <Separator/>
+    <Action name="game_stop"/>
+    <Action name="game_hint"/>
+    <Action name="move_undo"/>
+    <Separator/>
+    <Action name="help_contents"/>
+</ToolBar>
+
+</kpartgui>

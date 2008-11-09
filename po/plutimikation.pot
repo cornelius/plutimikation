@@ -1,0 +1,103 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2004-07-14 10:31+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: _translatorinfo.cpp:1
+msgid ""
+"_: NAME OF TRANSLATORS\n"
+"Your names"
+msgstr ""
+
+#: _translatorinfo.cpp:3
+msgid ""
+"_: EMAIL OF TRANSLATORS\n"
+"Your emails"
+msgstr ""
+
+#: configdialog.cpp:34
+msgid "Preferences"
+msgstr ""
+
+#: configdialog.cpp:59
+msgid "Check all"
+msgstr ""
+
+#: configdialog.cpp:63
+msgid "Uncheck all"
+msgstr ""
+
+#: configdialog.cpp:67
+msgid "Check random row"
+msgstr ""
+
+#: main.cpp:31
+msgid "Multiplication Table Game"
+msgstr ""
+
+#: main.cpp:35
+msgid "Plutimikation"
+msgstr ""
+
+#: main.cpp:38
+msgid "For Antonia"
+msgstr ""
+
+#: plutimikation.cpp:56
+msgid "Question:"
+msgstr ""
+
+#: plutimikation.cpp:66
+msgid "Answer:"
+msgstr ""
+
+#: plutimikation.cpp:74
+msgid "Ok"
+msgstr ""
+
+#: plutimikation.cpp:157
+msgid "Ready"
+msgstr ""
+
+#: plutimikation.cpp:213
+msgid "Correct answer:"
+msgstr ""
+
+#: plutimikation.cpp:217
+msgid "Wrong answer."
+msgstr ""
+
+#: plutimikation.cpp:218
+msgid "Correct Answer:"
+msgstr ""
+
+#: plutimikation.cpp:228
+msgid "<qt><b>Congratulation!</b><br>You answered all questions.</qt>"
+msgstr ""
+
+#: plutimikation.cpp:234
+msgid "You won."
+msgstr ""
+
+#: rc.cpp:5
+msgid "Rows to train."
+msgstr ""
+
+#: resultview.cpp:38
+msgid "Total questions:"
+msgstr ""
+
+#: resultview.cpp:45
+msgid "Correct Answers:"
+msgstr ""
+
+#: resultview.cpp:52
+msgid "Wrong Answers:"
+msgstr ""

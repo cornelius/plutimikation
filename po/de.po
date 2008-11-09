@@ -1,0 +1,110 @@
+# translation of de.po to 
+# translation of plutimikation.po to
+# This file is distributed under the same license as the PACKAGE package.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER, 2004.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: de\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2004-07-14 10:31+0200\n"
+"PO-Revision-Date: 2004-07-14 10:39GMT\n"
+"Last-Translator: \n"
+"Language-Team:  <C@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.3.1\n"
+
+#: _translatorinfo.cpp:1
+msgid ""
+"_: NAME OF TRANSLATORS\n"
+"Your names"
+msgstr "Cornelius Schumacher"
+
+#: _translatorinfo.cpp:3
+msgid ""
+"_: EMAIL OF TRANSLATORS\n"
+"Your emails"
+msgstr "schumacher@kde.org"
+
+#: configdialog.cpp:34
+msgid "Preferences"
+msgstr "Einstellungen"
+
+#: configdialog.cpp:59
+msgid "Check all"
+msgstr "Wähle alle aus"
+
+#: configdialog.cpp:63
+msgid "Uncheck all"
+msgstr "Wähle alle ab"
+
+#: configdialog.cpp:67
+msgid "Check random row"
+msgstr "Wähle zufällige Reihe"
+
+#: main.cpp:31
+msgid "Multiplication Table Game"
+msgstr "Einmaleins-Spiel"
+
+#: main.cpp:35
+msgid "Plutimikation"
+msgstr "Plutimikation"
+
+#: main.cpp:38
+msgid "For Antonia"
+msgstr "Für Antonia"
+
+#: plutimikation.cpp:56
+msgid "Question:"
+msgstr "Aufgabe:"
+
+#: plutimikation.cpp:66
+msgid "Answer:"
+msgstr "Antwort:"
+
+#: plutimikation.cpp:74
+msgid "Ok"
+msgstr "Ok"
+
+#: plutimikation.cpp:157
+msgid "Ready"
+msgstr "Bereit"
+
+#: plutimikation.cpp:213
+msgid "Correct answer:"
+msgstr "Richtige Antwort:"
+
+#: plutimikation.cpp:217
+msgid "Wrong answer."
+msgstr "Falsche Antwort."
+
+#: plutimikation.cpp:218
+msgid "Correct Answer:"
+msgstr "Richtige Antwort:"
+
+#: plutimikation.cpp:228
+msgid "<qt><b>Congratulation!</b><br>You answered all questions.</qt>"
+msgstr "<qt><b>Gratuliation!</b><br>Du hast alle Fragen beantwortet.</qt>"
+
+#: plutimikation.cpp:234
+msgid "You won."
+msgstr "Du hast gewonnen."
+
+#: rc.cpp:5
+msgid "Rows to train."
+msgstr "Reihen, die trainiert werden sollen."
+
+#: resultview.cpp:38
+msgid "Total questions:"
+msgstr "Gesamtzahl Fragen:"
+
+#: resultview.cpp:45
+msgid "Correct Answers:"
+msgstr "Richtige Antworten:"
+
+#: resultview.cpp:52
+msgid "Wrong Answers:"
+msgstr "Falsche Antworten:"
+
