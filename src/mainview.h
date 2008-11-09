@@ -43,8 +43,7 @@ class MainView : public QWidget
 
     void clear();
 
-    void initQuestionSets();
-    void initQuestions();
+    void initQuestions( const QuestionSet::List & );
     void newQuestion();
 
   protected slots:
@@ -64,8 +63,6 @@ class MainView : public QWidget
     Question::List::Iterator mCurrentQuestion;
 
     QTimer mReadyTimer;
-
-    QuestionSet::List mQuestionSets;
 };
 
 #endif

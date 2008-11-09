@@ -138,7 +138,7 @@ void Plutimikation::newGame()
 
   m_viewStack->raiseWidget( m_mainView );
 
-  m_mainView->initQuestions();
+  m_mainView->initQuestions( m_newGameView->questionSets() );
   m_mainView->newQuestion();
 }
 

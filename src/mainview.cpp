@@ -23,9 +23,6 @@
 
 #include "resultview.h"
 #include "krandom.h"
-#include "questionsetmultiplication.h"
-#include "questionsetquadrats.h"
-#include "questionsetcube.h"
 
 #include <klocale.h>
 #include <kdebug.h>
@@ -78,12 +75,6 @@ MainView::MainView( QWidget *parent )
   topLayout->addMultiCellWidget( mResultView, 0, 5, 1, 1 );
 
   connect( &mReadyTimer, SIGNAL( timeout() ), SLOT( setReady() ) );
-
-  initQuestionSets();
-
-  initQuestions();
-
-  newQuestion();
 }
 
 MainView::~MainView()
@@ -93,26 +84,14 @@ MainView::~MainView()
 
 void MainView::clear()
 {
-  QuestionSet::List::ConstIterator it;
-  for( it = mQuestionSets.begin(); it != mQuestionSets.end(); ++it ) {
-    delete *it;
-  }
-  mQuestionSets.clear();
 }
 
-void MainView::initQuestionSets()
-{
-  mQuestionSets.append( new QuestionSetMultiplication() );
-  mQuestionSets.append( new QuestionSetQuadrats() );
-  mQuestionSets.append( new QuestionSetCube() );
-}
-
-void MainView::initQuestions()
+void MainView::initQuestions( const QuestionSet::List &questionSets )
 {
   mQuestions.clear();
 
   QuestionSet::List::ConstIterator it;
-  for( it = mQuestionSets.begin(); it != mQuestionSets.end(); ++it ) {
+  for( it = questionSets.begin(); it != questionSets.end(); ++it ) {
     QuestionSet *set = *it;
     set->initQuestions( mQuestions );
   }

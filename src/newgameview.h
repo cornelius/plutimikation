@@ -21,7 +21,10 @@
 #ifndef NEWGAMEVIEW_H
 #define NEWGAMEVIEW_H
 
+#include "questionset.h"
+
 #include <qwidget.h>
+#include <qcheckbox.h>
 
 class NewGameView : public QWidget
 {
@@ -29,8 +32,15 @@ class NewGameView : public QWidget
   public:
     NewGameView( QWidget *parent = 0 );
 
+    QuestionSet::List questionSets() const;
+
   signals:
     void startClicked();
+
+  private:
+    QCheckBox *m_timesTableCheck;
+    QCheckBox *m_squareNumbersCheck;
+    QCheckBox *m_cubicNumbersCheck;
 };
 
 #endif
