@@ -1,0 +1,6 @@
+Makefile.in
+configure
+configure.in
+subdirs
+aclocal.m4
+acinclude.m4
