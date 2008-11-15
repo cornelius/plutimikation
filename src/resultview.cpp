@@ -27,62 +27,60 @@
 #include <kdebug.h>
 #include <klocale.h>
 
-#include <qlayout.h>
-#include <qlabel.h>
-
 ResultView::ResultView( QWidget *parent )
   : QWidget( parent ), mTotalCount( 0 ), mCurrentCount( 0 ), mWrongCount( 0 )
 {
-  QBoxLayout *topLayout = new QVBoxLayout( this );
-  
-  QLabel *label = new QLabel( i18n("Total questions:" ), this );
-  topLayout->addWidget( label );
-  
-  mTotalCountLabel = new QLabel( this  );
-  topLayout->addWidget( mTotalCountLabel );
-  mTotalCountLabel->setAlignment( AlignCenter );
-
-  label = new QLabel( i18n("Correct Answers:" ), this );
-  topLayout->addWidget( label );
-
-  mCurrentCountLabel = new QLabel( this  );
-  topLayout->addWidget( mCurrentCountLabel );
-  mCurrentCountLabel->setAlignment( AlignCenter );
-
-  label = new QLabel( i18n("Wrong Answers:" ), this );
-  topLayout->addWidget( label );
-
-  mWrongCountLabel = new QLabel( this  );
-  topLayout->addWidget( mWrongCountLabel );
-  mWrongCountLabel->setAlignment( AlignCenter );
 }
 
 void ResultView::setTotalCount( int c )
 {
   mTotalCount = c;
-  mTotalCountLabel->setText( QString::number( c ) );
+  doSetTotalCount( c );
 }
 
 void ResultView::setCurrentCount( int c )
 {
   mCurrentCount = c;
-  mCurrentCountLabel->setText( QString::number( c ) );
+  doSetCurrentCount( c );
 }
 
 void ResultView::setWrongCount( int c )
 {
   mWrongCount = c;
-  mWrongCountLabel->setText( QString::number( c ) );
+  doSetWrongCount( c );
 }
 
 void ResultView::incrementCurrentCount()
 {
   setCurrentCount( mCurrentCount + 1 );
+  doIncrementCurrentCount();
 }
 
 void ResultView::incrementWrongCount()
 {
   setWrongCount( mWrongCount + 1 );
+  doIncrementWrongCount();
+}
+
+
+void ResultView::doSetTotalCount( int )
+{
+}
+
+void ResultView::doSetCurrentCount( int )
+{
+}
+
+void ResultView::doSetWrongCount( int )
+{
+}
+
+void ResultView::doIncrementCurrentCount()
+{
+}
+
+void ResultView::doIncrementWrongCount()
+{
 }
 
 #include "resultview.moc"

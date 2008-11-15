@@ -13,7 +13,7 @@ plutimikation_SOURCES = main.cpp plutimikation.cpp prefs.kcfgc \
                         questionset.cpp questionsetmultiplication.cpp \
                         questionsetsquares.cpp questionsetcubics.cpp \
                         questionsetdivision.cpp \
-                        mainview.cpp newgameview.cpp
+                        mainview.cpp newgameview.cpp resultviewtext.cpp
 
 xdg_apps_DATA = plutimikation.desktop
 kde_kcfg_DATA = plutimikation.kcfg

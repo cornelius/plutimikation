@@ -21,37 +21,32 @@
     with any edition of Qt, and distribute the resulting executable,
     without including the source code for Qt in the source distribution.
 */
-#ifndef RESULTVIEW_H
-#define RESULTVIEW_H
+#ifndef RESULTVIEWTEXT_H
+#define RESULTVIEWTEXT_H
 
-#include <qwidget.h>
+#include "resultview.h"
+
+class QLabel;
 
 /**
-  View base class for showing overall results of Plutimikation.
+  Text view for showing overall results of Plutimikation.
 */
-class ResultView : public QWidget
+class ResultViewText : public ResultView
 {
     Q_OBJECT
   public:
-    ResultView( QWidget *parent );
-
-    void setTotalCount( int );
-    void setCurrentCount( int );
-    void incrementCurrentCount();
-    void setWrongCount( int );
-    void incrementWrongCount();
+    ResultViewText( QWidget *parent );
 
   protected:
-    virtual void doSetTotalCount( int );
-    virtual void doSetCurrentCount( int );
-    virtual void doIncrementCurrentCount();
-    virtual void doSetWrongCount( int );
-    virtual void doIncrementWrongCount();
+    void doSetTotalCount( int );
+    void doSetCurrentCount( int );
+    void doSetWrongCount( int );
 
   private:
-    int mTotalCount;
-    int mCurrentCount;
-    int mWrongCount;
+    QLabel *mTotalCountLabel;
+    QLabel *mCurrentCountLabel;
+    QLabel *mWrongCountLabel;
 };
 
 #endif
+
