@@ -31,7 +31,7 @@ void QuestionSetSquares::initQuestions( Question::List &questions )
 {
   for( int b = 1; b <= 20; ++b ) {
     Question q;
-    q.setQuestion( QString::number( b ) + " ^ 2" );
+    q.setQuestion( QString::number( b ) + " square" );
     q.setAnswer( QString::number( b * b ) );
     questions.append( q );
   }

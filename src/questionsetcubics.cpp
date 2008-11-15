@@ -31,7 +31,7 @@ void QuestionSetCubics::initQuestions( Question::List &questions )
 {
   for( int b = 1; b <= 10; ++b ) {
     Question q;
-    q.setQuestion( QString::number( b ) + " ^ 3" );
+    q.setQuestion( QString::number( b ) + " cube" );
     q.setAnswer( QString::number( b * b * b ) );
     questions.append( q );
   }
