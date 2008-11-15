@@ -26,9 +26,11 @@
 
 #include <kdebug.h>
 #include <klocale.h>
+#include <kstandarddirs.h>
 
 #include <qlayout.h>
 #include <qlabel.h>
+#include <qpixmap.h>
 
 ResultViewPic::ResultViewPic( QWidget *parent )
   : ResultView( parent )
@@ -42,6 +44,11 @@ ResultViewPic::ResultViewPic( QWidget *parent )
   mPicLabel = new QLabel( this  );
   topLayout->addWidget( mPicLabel, 1 );
   mPicLabel->setAlignment( AlignCenter );
+
+  QString picPath = locate( "appdata", "pics/funny_bunny.jpg" );
+  kdDebug() << "PIC: " << picPath << endl;
+  
+  mPicLabel->setPixmap( QPixmap( picPath ) );
 
   setSummary();
 }

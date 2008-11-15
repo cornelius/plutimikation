@@ -1,4 +1,4 @@
-SUBDIRS = src po
+SUBDIRS = src po pics
 
 EXTRA_DIST = admin
 
