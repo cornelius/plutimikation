@@ -22,81 +22,49 @@
     without including the source code for Qt in the source distribution.
 */
 
-#include "resultview.h"
+#include "resultviewpic.h"
 
 #include <kdebug.h>
 #include <klocale.h>
 
-ResultView::ResultView( QWidget *parent )
-  : QWidget( parent ), mTotalCount( 0 ), mCurrentCount( 0 ), mWrongCount( 0 )
-{
-}
+#include <qlayout.h>
+#include <qlabel.h>
 
-void ResultView::setTotalCount( int c )
+ResultViewPic::ResultViewPic( QWidget *parent )
+  : ResultView( parent )
 {
-  mTotalCount = c;
-  doSetTotalCount( c );
-}
-
-void ResultView::setCurrentCount( int c )
-{
-  mCurrentCount = c;
-  doSetCurrentCount( c );
-}
-
-void ResultView::setWrongCount( int c )
-{
-  mWrongCount = c;
-  doSetWrongCount( c );
-}
-
-void ResultView::incrementCurrentCount()
-{
-  setCurrentCount( mCurrentCount + 1 );
-  doIncrementCurrentCount();
-}
-
-void ResultView::incrementWrongCount()
-{
-  setWrongCount( mWrongCount + 1 );
-  doIncrementWrongCount();
-}
-
-
-void ResultView::doSetTotalCount( int )
-{
-}
-
-void ResultView::doSetCurrentCount( int )
-{
-}
-
-void ResultView::doSetWrongCount( int )
-{
-}
-
-void ResultView::doIncrementCurrentCount()
-{
-}
-
-void ResultView::doIncrementWrongCount()
-{
-}
-
-int ResultView::totalCount()
-{
-  return mTotalCount;
-}
-
-int ResultView::currentCount()
-{
-  return mCurrentCount;
+  QBoxLayout *topLayout = new QVBoxLayout( this );
   
+  mSummaryLabel = new QLabel( this  );
+  topLayout->addWidget( mSummaryLabel );
+  mSummaryLabel->setAlignment( AlignCenter );
+
+  mPicLabel = new QLabel( this  );
+  topLayout->addWidget( mPicLabel, 1 );
+  mPicLabel->setAlignment( AlignCenter );
+
+  setSummary();
 }
 
-int ResultView::wrongCount()
+void ResultViewPic::doSetTotalCount( int c )
 {
-  return mWrongCount;
+  setSummary();
 }
 
-#include "resultview.moc"
+void ResultViewPic::doSetCurrentCount( int c )
+{
+  setSummary();
+}
+
+void ResultViewPic::doSetWrongCount( int c )
+{
+  setSummary();
+}
+
+void ResultViewPic::setSummary()
+{
+  mSummaryLabel->setText( i18n("%1/%2 correct, %3 wrong").arg( currentCount() )
+    .arg( totalCount() ).arg( wrongCount() ) );
+}
+
+#include "resultviewpic.moc"

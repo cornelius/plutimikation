@@ -22,6 +22,7 @@
 #include "mainview.h"
 
 #include "resultviewtext.h"
+#include "resultviewpic.h"
 #include "krandom.h"
 
 #include <klocale.h>
@@ -71,7 +72,8 @@ MainView::MainView( QWidget *parent )
   QFontMetrics fm( mFeedbackText->font() );
   mFeedbackText->setFixedHeight( fm.height() * 3 + 6 );
 
-  mResultView = new ResultViewText( this );
+//  mResultView = new ResultViewText( this );
+  mResultView = new ResultViewPic( this );
   topLayout->addMultiCellWidget( mResultView, 0, 5, 1, 1 );
 
   connect( &mReadyTimer, SIGNAL( timeout() ), SLOT( setReady() ) );
