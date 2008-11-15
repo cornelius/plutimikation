@@ -125,6 +125,8 @@ void MainView::newQuestion()
   mAnswerEdit->setText( "" );
 
   mReadyTimer.start( 1000, true ); // 1 second
+
+//  mResultView->runAutoResult();
 }
 
 void MainView::checkAnswer()

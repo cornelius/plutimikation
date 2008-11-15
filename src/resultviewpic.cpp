@@ -24,12 +24,16 @@
 
 #include "resultviewpic.h"
 
+#include "krandom.h"
+
 #include <kdebug.h>
 #include <klocale.h>
 #include <kstandarddirs.h>
 
 #include <qlayout.h>
 #include <qlabel.h>
+
+#include <math.h>
 
 ResultViewPic::ResultViewPic( QWidget *parent )
   : ResultView( parent )
@@ -45,7 +49,6 @@ ResultViewPic::ResultViewPic( QWidget *parent )
   mPicLabel->setAlignment( AlignCenter );
 
   QString picPath = locate( "appdata", "pics/funny_bunny.jpg" );
-  kdDebug() << "PIC: " << picPath << endl;
   mFullPic = QPixmap( picPath );
   mCurrentPic.resize( mFullPic.size() );
   mCurrentPic.fill();
@@ -59,29 +62,54 @@ void ResultViewPic::calculatePieces()
 {
   mPieces.clear();
 
+  float aspectRatio = float( mFullPic.width() ) / float( mFullPic.height() );
+
+  kdDebug() << "AR: " << aspectRatio << endl;
+
+  int y = sqrt( float( totalCount() ) / aspectRatio );
+  int x = y * aspectRatio;
+
+  kdDebug() << "TOTAL: " << x << " " << y << endl;
+
+  while( x * y < totalCount() ) {
+    y += 1;
+    x = y * aspectRatio;
+  }
+
+  kdDebug() << "TOTAL2: " << x << " " << y << endl;
+
   int row = 0;
   int col = 0;
 
-  int size = 20;
+  float x_size = float( mFullPic.width() ) / float( x );
+  float y_size = float( mFullPic.height() ) / float( y );
 
-  for ( int i = 0; i < totalCount(); ++i ) {
+  kdDebug() << "X_SIZE: " << x_size << " Y_SIZE: " << y_size << endl;
+
+  for ( int i = 0; i < x * y; ++i ) {
     QRect piece;
-    piece.setLeft( row * size );
-    piece.setTop( col *size );
-    piece.setWidth( size );
-    piece.setHeight( size );
+    piece.setLeft( row * x_size );
+    piece.setTop( col * y_size );
+    piece.setWidth( ceil( x_size ) );
+    piece.setHeight( ceil( y_size ) );
     mPieces.append( piece );
 
     row++;
-    if ( row * size > mFullPic.width() ) {
+    if ( row >= x ) {
       col++;
       row = 0;
     }
   }
+
+//  showPiece( mPieces.last() );
+  
+  kdDebug() << "PIECES: " << mPieces.count() << endl;
 }
 
 void ResultViewPic::doSetTotalCount( int c )
 {
+  Q_UNUSED( c );
+
   calculatePieces();
 
   setSummary();
@@ -89,16 +117,39 @@ void ResultViewPic::doSetTotalCount( int c )
 
 void ResultViewPic::doSetCurrentCount( int c )
 {
-  QRect piece = mPieces[ c ];
+  Q_UNUSED( c );
 
+  if ( c > 0 ) {
+    int select = KRandom::number( mPieces.count() );
+    Q_ASSERT( select < int( mPieces.count() ) );
+
+    QRect piece = mPieces[ select ];
+    QValueList<QRect>::Iterator it = mPieces.at( select );
+    mPieces.erase( it );
+
+    showPiece( piece );
+  }
+
+  if ( c == totalCount() ) {
+    for( unsigned int i = 0; i < mPieces.count(); ++i ) {
+      showPiece( mPieces[ i ] );
+    }
+  }
+
+  setSummary();
+}
+
+void ResultViewPic::showPiece( const QRect &piece )
+{
   copyBlt ( &mCurrentPic, piece.x(), piece.y(),
     &mFullPic, piece.x(), piece.y(), piece.width(), piece.height() );
   mPicLabel->setPixmap( mCurrentPic );
-  setSummary();
 }
 
 void ResultViewPic::doSetWrongCount( int c )
 {
+  Q_UNUSED( c );
+
   setSummary();
 }
 

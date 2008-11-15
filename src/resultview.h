@@ -25,6 +25,7 @@
 #define RESULTVIEW_H
 
 #include <qwidget.h>
+#include <qtimer.h>
 
 /**
   View base class for showing overall results of Plutimikation.
@@ -45,6 +46,8 @@ class ResultView : public QWidget
     int currentCount();
     int wrongCount();
 
+    void runAutoResult();
+
   protected:
     virtual void doSetTotalCount( int );
     virtual void doSetCurrentCount( int );
@@ -52,10 +55,16 @@ class ResultView : public QWidget
     virtual void doSetWrongCount( int );
     virtual void doIncrementWrongCount();
 
+  protected slots:
+    void autoResultTick();
+
   private:
     int mTotalCount;
     int mCurrentCount;
     int mWrongCount;
+    
+    int m_autoResultCount;
+    QTimer m_autoResultTimer;
 };
 
 #endif

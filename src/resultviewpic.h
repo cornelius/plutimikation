@@ -48,6 +48,8 @@ class ResultViewPic : public ResultView
 
     void calculatePieces();
 
+    void showPiece( const QRect & );
+
   private:
     QLabel *mSummaryLabel;
     QLabel *mPicLabel;

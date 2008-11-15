@@ -30,6 +30,7 @@
 ResultView::ResultView( QWidget *parent )
   : QWidget( parent ), mTotalCount( 0 ), mCurrentCount( 0 ), mWrongCount( 0 )
 {
+  connect( &m_autoResultTimer, SIGNAL( timeout() ), SLOT( autoResultTick() ) );
 }
 
 void ResultView::setTotalCount( int c )
@@ -97,6 +98,20 @@ int ResultView::currentCount()
 int ResultView::wrongCount()
 {
   return mWrongCount;
+}
+
+void ResultView::runAutoResult()
+{
+  m_autoResultCount = 0;
+  m_autoResultTimer.start( 100 );
+}
+
+void ResultView::autoResultTick()
+{
+  setCurrentCount( m_autoResultCount++ );
+  if ( m_autoResultCount >= totalCount() ) {
+    m_autoResultTimer.stop();
+  }
 }
 
 #include "resultview.moc"
