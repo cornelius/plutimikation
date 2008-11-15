@@ -26,6 +26,8 @@
 
 #include "resultview.h"
 
+#include <qpixmap.h>
+
 class QLabel;
 
 /**
@@ -44,9 +46,16 @@ class ResultViewPic : public ResultView
 
     void setSummary();
 
+    void calculatePieces();
+
   private:
     QLabel *mSummaryLabel;
     QLabel *mPicLabel;
+
+    QPixmap mFullPic;
+    QPixmap mCurrentPic;
+    
+    QValueList<QRect> mPieces;
 };
 
 #endif

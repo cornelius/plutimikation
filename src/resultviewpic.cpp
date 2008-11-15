@@ -30,7 +30,6 @@
 
 #include <qlayout.h>
 #include <qlabel.h>
-#include <qpixmap.h>
 
 ResultViewPic::ResultViewPic( QWidget *parent )
   : ResultView( parent )
@@ -47,19 +46,54 @@ ResultViewPic::ResultViewPic( QWidget *parent )
 
   QString picPath = locate( "appdata", "pics/funny_bunny.jpg" );
   kdDebug() << "PIC: " << picPath << endl;
+  mFullPic = QPixmap( picPath );
+  mCurrentPic.resize( mFullPic.size() );
+  mCurrentPic.fill();
   
-  mPicLabel->setPixmap( QPixmap( picPath ) );
+  mPicLabel->setPixmap( mCurrentPic );
 
   setSummary();
 }
 
+void ResultViewPic::calculatePieces()
+{
+  mPieces.clear();
+
+  int row = 0;
+  int col = 0;
+
+  int size = 20;
+
+  for ( int i = 0; i < totalCount(); ++i ) {
+    QRect piece;
+    piece.setLeft( row * size );
+    piece.setTop( col *size );
+    piece.setWidth( size );
+    piece.setHeight( size );
+    mPieces.append( piece );
+
+    row++;
+    if ( row * size > mFullPic.width() ) {
+      col++;
+      row = 0;
+    }
+  }
+}
+
 void ResultViewPic::doSetTotalCount( int c )
 {
+  calculatePieces();
+
   setSummary();
 }
 
 void ResultViewPic::doSetCurrentCount( int c )
 {
+  QRect piece = mPieces[ c ];
+
+  copyBlt ( &mCurrentPic, piece.x(), piece.y(),
+    &mFullPic, piece.x(), piece.y(), piece.width(), piece.height() );
+  mPicLabel->setPixmap( mCurrentPic );
   setSummary();
 }
 
