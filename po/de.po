@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-07-14 10:31+0200\n"
+"POT-Creation-Date: 2008-11-15 14:54+0100\n"
 "PO-Revision-Date: 2004-07-14 10:39GMT\n"
 "Last-Translator: \n"
 "Language-Team:  <C@li.org>\n"
@@ -56,55 +56,80 @@ msgstr "Plutimikation"
 msgid "For Antonia"
 msgstr "Für Antonia"
 
-#: plutimikation.cpp:56
+#: mainview.cpp:44
 msgid "Question:"
 msgstr "Aufgabe:"
 
-#: plutimikation.cpp:66
+#: mainview.cpp:54
 msgid "Answer:"
 msgstr "Antwort:"
 
-#: plutimikation.cpp:74
+#: mainview.cpp:62
 msgid "Ok"
 msgstr "Ok"
 
-#: plutimikation.cpp:157
+#: mainview.cpp:113
 msgid "Ready"
 msgstr "Bereit"
 
-#: plutimikation.cpp:213
+#: mainview.cpp:145
 msgid "Correct answer:"
 msgstr "Richtige Antwort:"
 
-#: plutimikation.cpp:217
+#: mainview.cpp:149
 msgid "Wrong answer."
 msgstr "Falsche Antwort."
 
-#: plutimikation.cpp:218
+#: mainview.cpp:150
 msgid "Correct Answer:"
 msgstr "Richtige Antwort:"
 
-#: plutimikation.cpp:228
+#: mainview.cpp:160
 msgid "<qt><b>Congratulation!</b><br>You answered all questions.</qt>"
 msgstr "<qt><b>Gratuliation!</b><br>Du hast alle Fragen beantwortet.</qt>"
 
-#: plutimikation.cpp:234
+#: mainview.cpp:166
 msgid "You won."
 msgstr "Du hast gewonnen."
 
-#: rc.cpp:5
+#: newgameview.cpp:43
+msgid "Times Table"
+msgstr "Einmaleins"
+
+#: newgameview.cpp:47
+msgid "Division"
+msgstr "Teilen"
+
+#: newgameview.cpp:50
+msgid "Square Numbers"
+msgstr "Qudrat-Zahlen"
+
+#: newgameview.cpp:53
+msgid "Cubic Numbers"
+msgstr "Kubik-Zahlen"
+
+#: newgameview.cpp:58
+msgid "Start"
+msgstr "Los"
+
+#. i18n: file plutimikation.kcfg line 7
+#: rc.cpp:6
+#, no-c-format
 msgid "Rows to train."
 msgstr "Reihen, die trainiert werden sollen."
 
-#: resultview.cpp:38
+#: resultviewpic.cpp:158
+msgid "%1/%2 correct, %3 wrong"
+msgstr "%1/%2 richtig, %3 falsch"
+
+#: resultviewtext.cpp:38
 msgid "Total questions:"
 msgstr "Gesamtzahl Fragen:"
 
-#: resultview.cpp:45
+#: resultviewtext.cpp:45
 msgid "Correct Answers:"
 msgstr "Richtige Antworten:"
 
-#: resultview.cpp:52
+#: resultviewtext.cpp:52
 msgid "Wrong Answers:"
 msgstr "Falsche Antworten:"
-
