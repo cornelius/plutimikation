@@ -124,7 +124,7 @@ void MainView::newQuestion()
 
   mAnswerEdit->setText( "" );
 
-  mReadyTimer.start( 1000, true ); // 1 second
+  mReadyTimer.start( 2000, true ); // 2 seconds
 
 //  mResultView->runAutoResult();
 }
