@@ -50,7 +50,7 @@ Plutimikation::Plutimikation()
 
   m_newGameView = new NewGameView( this );
   m_viewStack->addWidget( m_newGameView );
-  connect( m_newGameView, SIGNAL( startClicked() ), SLOT( newGame() ) );
+  connect( m_newGameView, SIGNAL( startClicked() ), SLOT( startGame() ) );
 
   m_mainView = new MainView( this );
   m_viewStack->addWidget( m_mainView );
@@ -82,7 +82,7 @@ void Plutimikation::writeSettings()
 
 void Plutimikation::initActions()
 {
-  KStdAction::openNew( this, SLOT( newGame() ), actionCollection() );
+  KStdAction::openNew( this, SLOT( newGame() ), actionCollection() );  
 
   KStdAction::quit( this, SLOT( close() ), actionCollection() );
 
@@ -124,8 +124,11 @@ void Plutimikation::showStatus( const QString &msg )
 
 void Plutimikation::newGame()
 {
-  kdDebug() << "NEW GAME" << endl;
+  m_viewStack->raiseWidget( m_newGameView );
+}
 
+void Plutimikation::startGame()
+{
   m_viewStack->raiseWidget( m_mainView );
 
   m_mainView->initQuestions( m_newGameView->questionSets() );
