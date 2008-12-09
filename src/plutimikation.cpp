@@ -37,6 +37,9 @@
 #include <kio/netaccess.h>
 #include <kstatusbar.h>
 #include <kdebug.h>
+#include <kstandarddirs.h>
+#include <kapp.h>
+#include <krun.h>
 
 #include <qwidgetstack.h>
 #include <qlayout.h>
@@ -84,8 +87,18 @@ void Plutimikation::initActions()
 {
   KStdAction::openNew( this, SLOT( newGame() ), actionCollection() );  
 
+  new KAction( i18n("Start"), 0, this, SLOT( startGame() ),
+    actionCollection(), "restart" );
+  
   KStdAction::quit( this, SLOT( close() ), actionCollection() );
 
+
+  new KAction( i18n("Import Pictures"), 0, this, SLOT( importPictures() ),
+    actionCollection(), "import_pictures" );
+  
+  new KAction( i18n("Show Pictures"), 0, this, SLOT( showPictures() ),
+    actionCollection(), "show_pictures" );
+  
 
   createStandardStatusBarAction();
   setStandardToolBarMenuEnabled(true);
@@ -133,6 +146,32 @@ void Plutimikation::startGame()
 
   m_mainView->initQuestions( m_newGameView->questionSets() );
   m_mainView->newQuestion();
+}
+
+void Plutimikation::importPictures()
+{
+  KURL::List urls = KFileDialog::getOpenURLs( QString::null, QString::null,
+    this, i18n("Choose files to import") );
+
+  QString destDir = locateLocal( "appdata", "progress_pictures/" );
+
+  kdDebug() << "DEST DIR: " << destDir << endl;
+
+  KURL::List::ConstIterator it;
+  for( it = urls.begin(); it != urls.end(); ++it ) {
+    KURL destUrl( "file:///" + destDir + KApplication::randomString( 10 ) );
+
+    kdDebug() << "DEST: " << destUrl << endl;
+
+    KIO::NetAccess::copy( *it, destUrl, this );
+  }
+}
+
+void Plutimikation::showPictures()
+{
+  QString dir = "file:///" + locateLocal( "appdata", "progress_pictures/" );
+
+  kapp->invokeBrowser( dir );
 }
 
 #include "plutimikation.moc"

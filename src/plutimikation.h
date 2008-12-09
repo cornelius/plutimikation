@@ -56,6 +56,9 @@ class Plutimikation : public KMainWindow
 
     void newGame();
     void startGame();
+
+    void importPictures();
+    void showPictures();
     
   private:
     QWidgetStack *m_viewStack;
