@@ -91,18 +91,18 @@ void ResultView::doIncrementWrongCount()
 {
 }
 
-int ResultView::totalCount()
+int ResultView::totalCount() const
 {
   return mTotalCount;
 }
 
-int ResultView::currentCount()
+int ResultView::currentCount() const
 {
   return mCurrentCount;
   
 }
 
-int ResultView::wrongCount()
+int ResultView::wrongCount() const
 {
   return mWrongCount;
 }
@@ -118,6 +118,19 @@ void ResultView::autoResultTick()
   setCurrentCount( m_autoResultCount++ );
   if ( m_autoResultCount >= totalCount() ) {
     m_autoResultTimer.stop();
+  }
+}
+
+QString ResultView::rating() const
+{
+  if ( wrongCount() == 0 ) {
+    return i18n("Perfect!");
+  } else if ( wrongCount() <= totalCount() / 10 ) {
+    return i18n("Excellent");
+  } else if ( wrongCount() <= totalCount() / 4 ) {
+    return i18n("Good");
+  } else {
+    return i18n("You can do better.");
   }
 }
 

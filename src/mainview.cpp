@@ -155,8 +155,22 @@ void MainView::checkAnswer()
   mFeedbackText->setText( text );
   
   if ( mQuestions.count() == 0 ) {
-    KMessageBox::information( this, i18n("<qt><b>Congratulation!</b><br>"
-                                         "You answered all questions.</qt>") );
+    QString text = "<qt>";
+    text += i18n("<b>Congratulation!</b><br/>");
+    text += i18n("You answered all questions.<br/>");
+    text += "<br/>";
+    if ( mResultView->wrongCount() == 0 ) {
+      text += i18n("You gave no wrong answers.");
+    } else {
+      text += i18n("You gave one wrong answer.",
+        "You gave %n wrong answers", mResultView->wrongCount() );
+    }
+    text += "<br/>";
+    text += mResultView->rating();
+    text += "</qt>";
+    
+    KMessageBox::information( this, text );
+
     mQuestionLabel->setText( "" );
     mAnswerEdit->setText( "" );
     mAnswerEdit->setEnabled( false );

@@ -46,11 +46,13 @@ class ResultView : public QWidget
     void setWrongCount( int );
     void incrementWrongCount();
 
-    int totalCount();
-    int currentCount();
-    int wrongCount();
+    int totalCount() const;
+    int currentCount() const;
+    int wrongCount() const;
 
     void runAutoResult();
+
+    QString rating() const;
 
   protected:
     virtual void doSetTotalCount( int );
