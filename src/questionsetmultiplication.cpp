@@ -35,7 +35,7 @@ void QuestionSetMultiplication::initQuestions( Question::List &questions )
     int a = *it;
     for( int b = 1; b <= 10; ++b ) {
       Question q;
-      q.setQuestion( QString::number( a ) + " \xb7 " + QString::number( b ) );
+      q.setQuestion( QString::number( b ) + " \xb7 " + QString::number( a ) );
       q.setAnswer( QString::number( a * b ) );
       questions.append( q );
     }
