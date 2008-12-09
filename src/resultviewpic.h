@@ -46,6 +46,7 @@ class ResultViewPic : public ResultView
 
     void setSummary();
 
+    void selectPicture();
     void calculatePieces();
 
     void showPiece( const QRect & );

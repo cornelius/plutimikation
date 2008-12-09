@@ -29,9 +29,11 @@
 #include <kdebug.h>
 #include <klocale.h>
 #include <kstandarddirs.h>
+#include <kmessagebox.h>
 
 #include <qlayout.h>
 #include <qlabel.h>
+#include <qdir.h>
 
 #include <math.h>
 
@@ -48,18 +50,38 @@ ResultViewPic::ResultViewPic( QWidget *parent )
   topLayout->addWidget( mPicLabel, 1 );
   mPicLabel->setAlignment( AlignCenter );
 
-  QString picPath = locate( "appdata", "pics/funny_bunny.jpg" );
+  setSummary();
+}
+
+void ResultViewPic::selectPicture()
+{
+  QStringList paths;
+  
+  paths.append( locate( "appdata", "pics/funny_bunny.jpg" ) );
+
+  QString dirPath = locateLocal( "appdata", "progress_pictures/" );
+  QDir dir( dirPath );
+  QStringList entries = dir.entryList( QDir::Files );
+
+  QStringList::ConstIterator it;
+  for( it = entries.begin(); it != entries.end(); ++it ) {
+    paths.append( dirPath + *it );
+  }
+
+  QString picPath = paths[ KRandom::number( paths.size() ) ];
+
   mFullPic = QPixmap( picPath );
+
   mCurrentPic.resize( mFullPic.size() );
   mCurrentPic.fill();
-  
-  mPicLabel->setPixmap( mCurrentPic );
 
-  setSummary();
+  mPicLabel->setPixmap( mCurrentPic );
 }
 
 void ResultViewPic::calculatePieces()
 {
+  selectPicture();
+  
   mPieces.clear();
 
   float aspectRatio = float( mFullPic.width() ) / float( mFullPic.height() );
