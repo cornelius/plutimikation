@@ -25,6 +25,8 @@
 
 #include <qwidget.h>
 #include <qcheckbox.h>
+#include <qlayout.h>
+#include <qvaluelist.h>
 
 class NewGameView : public QWidget
 {
@@ -34,14 +36,30 @@ class NewGameView : public QWidget
 
     QuestionSet::List questionSets() const;
 
+    void readSettings();
+    void writeSettings();
+
   signals:
     void startClicked();
+
+  protected:
+    QBoxLayout *createRowChecks( QValueList<QCheckBox *> &checks );
+    
+    void readRowSettings( const QValueList<int> &,
+      const QValueList<QCheckBox *> & );
+    QValueList<int> selectedRows( const QValueList<QCheckBox *> &checks );
+
+  protected slots:
+    void slotStartClicked();
 
   private:
     QCheckBox *m_timesTableCheck;
     QCheckBox *m_divisionCheck;
     QCheckBox *m_squareNumbersCheck;
     QCheckBox *m_cubicNumbersCheck;
+
+    QValueList<QCheckBox *> m_multiplicationRowChecks;
+    QValueList<QCheckBox *> m_divisionRowChecks;
 };
 
 #endif

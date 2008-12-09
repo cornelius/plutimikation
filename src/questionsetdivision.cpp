@@ -29,7 +29,7 @@ QuestionSetDivision::QuestionSetDivision()
 
 void QuestionSetDivision::initQuestions( Question::List &questions )
 {
-  QValueList<int> rows = Prefs::rows();
+  QValueList<int> rows = Prefs::divisionRows();
   QValueList<int>::ConstIterator it;
   for( it = rows.begin(); it != rows.end(); ++it ) {
     int a = *it;

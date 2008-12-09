@@ -3,8 +3,12 @@
 <kcfg>
   <kcfgfile name="plutimikationrc"/>
   <group name="Questions">
-    <entry name="Rows" type="IntList">
-      <label>Rows to train.</label>
+    <entry name="MultiplicationRows" type="IntList">
+      <label>Rows to train for multiplication.</label>
+      <default>1,2,3,4,5,6,7,8,9,10</default>
+    </entry>
+    <entry name="DivisionRows" type="IntList">
+      <label>Rows to train for division.</label>
       <default>1,2,3,4,5,6,7,8,9,10</default>
     </entry>
   </group>

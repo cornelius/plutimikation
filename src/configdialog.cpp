@@ -38,6 +38,7 @@ ConfigDialog::ConfigDialog( QWidget *parent, const char *name )
   
   QBoxLayout *topLayout = new QHBoxLayout( topWidget );
 
+/*
   QBoxLayout *rowLayout = new QVBoxLayout( topLayout );
   
   for( uint i = 1; i <= 10; ++i ) {
@@ -69,6 +70,7 @@ ConfigDialog::ConfigDialog( QWidget *parent, const char *name )
   connect( button, SIGNAL( clicked() ), SLOT( checkRandom() ) );
 
   buttonLayout->addStretch();
+*/
 }
 
 ConfigDialog::~ConfigDialog()
@@ -100,6 +102,7 @@ void ConfigDialog::checkRandom()
 
 void ConfigDialog::slotOk()
 {
+/*
   QValueList<int> rows;
 
   for( uint i = 0; i < mRowChecks.count(); ++i ) {
@@ -107,7 +110,7 @@ void ConfigDialog::slotOk()
   }
 
   Prefs::setRows( rows );
-
+*/
   accept();
 }
 

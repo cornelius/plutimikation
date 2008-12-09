@@ -29,7 +29,7 @@ QuestionSetMultiplication::QuestionSetMultiplication()
 
 void QuestionSetMultiplication::initQuestions( Question::List &questions )
 {
-  QValueList<int> rows = Prefs::rows();
+  QValueList<int> rows = Prefs::multiplicationRows();
   QValueList<int>::ConstIterator it;
   for( it = rows.begin(); it != rows.end(); ++it ) {
     int a = *it;

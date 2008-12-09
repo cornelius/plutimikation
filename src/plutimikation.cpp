@@ -72,22 +72,12 @@ Plutimikation::~Plutimikation()
 
 void Plutimikation::readSettings()
 {
-#if 0
-  KConfig *cfg = KGlobal::config();
-  cfg->setGroup( "GameHandling" );
-  bool autoRoll = cfg->readBoolEntry( "AutoRoll", false );
-  mAutoRollAction->setChecked( autoRoll );
-  toggleAutoRoll();
-#endif
+  m_newGameView->readSettings();
 }
 
 void Plutimikation::writeSettings()
 {
-#if 0
-  KConfig *cfg = KGlobal::config();
-  cfg->setGroup( "GameHandling" );
-  cfg->writeEntry( "AutoRoll", mAutoRollAction->isChecked() );
-#endif
+  m_newGameView->writeSettings();
 }
 
 void Plutimikation::initActions()
