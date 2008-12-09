@@ -98,9 +98,7 @@ void MainView::initQuestions( const QuestionSet::List &questionSets )
     set->initQuestions( mQuestions );
   }
 
-  mResultView->setTotalCount( mQuestions.count() );
-  mResultView->setCurrentCount( 0 );
-  mResultView->setWrongCount( 0 );
+  mResultView->initialize( mQuestions );
 
   setReady();
 

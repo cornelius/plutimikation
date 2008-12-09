@@ -24,6 +24,8 @@
 #ifndef RESULTVIEW_H
 #define RESULTVIEW_H
 
+#include "question.h"
+
 #include <qwidget.h>
 #include <qtimer.h>
 
@@ -35,6 +37,8 @@ class ResultView : public QWidget
     Q_OBJECT
   public:
     ResultView( QWidget *parent );
+
+    void initialize( const Question::List &questions );
 
     void setTotalCount( int );
     void setCurrentCount( int );

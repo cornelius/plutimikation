@@ -33,6 +33,13 @@ ResultView::ResultView( QWidget *parent )
   connect( &m_autoResultTimer, SIGNAL( timeout() ), SLOT( autoResultTick() ) );
 }
 
+void ResultView::initialize( const Question::List &questions )
+{
+  setTotalCount( questions.count() );
+  setCurrentCount( 0 );
+  setWrongCount( 0 );
+}
+
 void ResultView::setTotalCount( int c )
 {
   mTotalCount = c;

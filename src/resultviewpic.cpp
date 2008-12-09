@@ -112,6 +112,9 @@ void ResultViewPic::doSetTotalCount( int c )
 
   calculatePieces();
 
+  mCurrentPic.fill();
+  mPicLabel->setPixmap( mCurrentPic );
+
   setSummary();
 }
 
