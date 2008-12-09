@@ -34,7 +34,7 @@ int main( int argc, char *argv[] )
 {
   KAboutData aboutData( "plutimikation", I18N_NOOP("Plutimikation"),
                         "0.1", description, KAboutData::License_GPL,
-                        "(c) 2004, Cornelius Schumacher",
+                        "(c) 2004,2008 Cornelius Schumacher",
                         I18N_NOOP("For Antonia") );
   aboutData.addAuthor("Cornelius Schumacher", 0, "schumacher@kde.org");
 
